@@ -4,6 +4,13 @@ import student from "../images/student.png"
 import Header from './Header'
 // import { Link , useHistory } from 'react-router-dom'
 function Cards() {
+    // const handleFailure = (result) => {
+    //     alert(result);
+    // };
+    // const handleLogin = (googleData) => {
+    //     console.log(googleData);
+    // };
+    
     return (
         <>
         <Header/>
@@ -45,6 +52,7 @@ function Cards() {
                                 </div>
                                 
                                 <a className="button-to-link" href="/teacher">Click here</a>
+                                
                             </div>
                         </div>
 

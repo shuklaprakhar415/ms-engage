@@ -14,7 +14,6 @@ from werkzeug.utils import secure_filename
 import io
 import os
 from pathlib import Path
-import pathlib
 import cv2
 import numpy as np
 import face_recognition
@@ -133,7 +132,9 @@ def add_student_image(admission_No):
 @app.route('/mark_attendance/<admission_No>/', methods=['POST'])
 def mark_attendance(admission_No):
     student = Students.query.filter_by(admission_No=admission_No).first()
-    
+    if student == None:
+        res = jsonify({'message' : 'Admission no. not found.' , 'matched' : '0'})
+        return res
     base64_string = request.json['base64_string']
     def data_uri_to_cv2_img(uri):
         encoded_data = uri.split(',')[1]

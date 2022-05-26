@@ -50,7 +50,7 @@ function FormAddStudent({ fetchStudent }) {
         <div className="container-sm py-5 ">
 
             <div className='row add-student-container'>
-                <div className="col-sm" style={{width : "50%"}}>
+                <div  style={{width : "50%"}}>
                     <div className="row">
                         <div className="col-lg-7 mx-auto">
                             <div className="bg-white  shadow p-3 mb-5 bg-body rounded-1">

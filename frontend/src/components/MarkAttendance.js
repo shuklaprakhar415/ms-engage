@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef } from 'react'
 import Webcam from "react-webcam"
+import LoadingSpinner from './LoadingSpinner';
 
 
 const videoConstraints = {
@@ -11,7 +12,7 @@ const videoConstraints = {
 
 function MarkAttendance() {
     const [admission_No, setAdmissionNo] = useState('');
-
+    const[isLoading , setIsLoading] = useState(false);
     const [image, setImage] = useState('');
     const [message, setMessage] = useState([])
     const [status, setStatus] = useState("")
@@ -26,6 +27,7 @@ function MarkAttendance() {
 
     const submitForm = () => {
         try {
+            setIsLoading(true);
             fetch(`http://127.0.0.1:5000/mark_attendance/${admission_No}/`, {
                 method: "POST",
                 headers: {
@@ -53,14 +55,17 @@ function MarkAttendance() {
                         setStatus("danger")
                         console.log(status);
                     }
+                    setIsLoading(false);
                 })
                  .catch(err => {
                      console.log(err);
+                     setIsLoading(false);
                  })
 
         }
         catch (err) {
             console.log(err);
+            setIsLoading(false);
         }
     };
 
@@ -127,9 +132,16 @@ function MarkAttendance() {
                                                             Capture</button>
                                                     }
                                                 </div>
+                                                {isLoading ? <LoadingSpinner/> : null}
                                             </div>
 
-                                            <button type="button" onClick={(e) => submitForm(e)} className=" btn-submit btn my-3"> Submit  </button>
+                                            <button 
+                                                type="button" 
+                                                onClick={(e) => submitForm(e)}
+                                                disabled={isLoading} 
+                                                className=" btn-submit btn my-3"> 
+                                                Submit  
+                                            </button>
                                         </form>
                                     </div>
                                 </div>
