@@ -33,3 +33,35 @@ cd frontend
 ```
 npm install
 ```
+6. Start development server for react by running following command , this will start your application in http://localhost:3000/ :
+```
+npm start
+```
+**Since API is not hosted , we have to serve this as well as locally.**
+**Our backend is made on flask ,so ensure that [python](https://www.python.org/downloads/) is installed in your PC**
+1. Open new terminal and go to the **backend** directorey by:
+```
+cd backend
+```
+2. Create virtual environment by that will create an **env** file , install Virual-Environment if you don't have after this run :
+```
+virtualenv env
+```
+3. Now activate the virtual environment by :
+```
+.\env\Scripts\activate
+```
+4. Now install the packages in requirements.txt file by :
+```
+pip install requirements.txt
+```
+5. Now create a new database file by opening new terminal and running following commands :
+```
+python
+```
+```
+from app import db
+```
+```
+db.create_all()
+```
