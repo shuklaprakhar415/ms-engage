@@ -2,14 +2,8 @@ import React from 'react'
 import teacher from "../images/teacher.png"
 import student from "../images/student.png"
 import Header from './Header'
-// import { Link , useHistory } from 'react-router-dom'
+
 function Cards() {
-    // const handleFailure = (result) => {
-    //     alert(result);
-    // };
-    // const handleLogin = (googleData) => {
-    //     console.log(googleData);
-    // };
     
     return (
         <>
@@ -32,9 +26,6 @@ function Cards() {
                                 </div>
                                 
                                 <a className="button-to-link" href="/student">Click here</a>
-                                {/* <button className="link" onClick={() => history.push('/student')}>
-                                        click here
-                                </button> */}
 
                             </div>
                         </div>

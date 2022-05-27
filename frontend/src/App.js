@@ -3,12 +3,12 @@ import Cards from './components/Cards';
 import Navbar from './components/Navbar';
 import Teacher from './components/Teacher';
 import Student from './components/Student';
+import Footer from './components/Footer';
 import {
   BrowserRouter,
   Route,
   Switch 
 } from "react-router-dom";
-import Footer from './components/Footer';
 
 function App() {
   return (

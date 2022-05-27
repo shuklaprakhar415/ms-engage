@@ -1,33 +1,21 @@
-from email.policy import default
-from fileinput import filename
-from msilib.schema import Directory
-from turtle import title
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-# import datetime
 from flask_marshmallow import Marshmallow
-from sqlalchemy import null
 import base64
-import urllib.request
-from werkzeug.utils import secure_filename
-import io
 import os
 from pathlib import Path
 import cv2
 import numpy as np
 import face_recognition
-from PIL import Image
 from imageio import imread
 from flask_cors import CORS
-import json
 
 app = Flask(__name__)
 CORS(app)
 app.secret_key = "prakharshukla"
 UPLOAD_FOLDER = 'backend\static\ImgUploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///attendanceflask.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -41,7 +29,7 @@ def allowed_file(filename):
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
-
+# Defining Database Model 
 class Students(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     admission_No = db.Column(db.String(10))
@@ -51,7 +39,6 @@ class Students(db.Model):
     present_status = db.Column(db.Boolean, default=False)
     date = db.Column(db.String(20), default="00:00")
     
-
     def __init__(self, admission_No, student_name):
         self.admission_No = admission_No
         self.student_name = student_name
@@ -67,6 +54,7 @@ student_schema = StudentSchema()
 students_schema = StudentSchema(many=True)
 
 
+# ---Getting Student list Route---
 @app.route('/get', methods=['GET'])
 def get_student_list():
     all_students = Students.query.all()
@@ -78,15 +66,23 @@ def get_student_list():
 def add_student():
     admission_No = request.json['admission_No']
     student_name = request.json['student_name']
+    student = Students.query.filter_by(admission_No=admission_No).first()
+    # If admission no already exists in database
+    if student != None:
+        res = jsonify({'message' : 'Admission no. already exists.' , 'added':'0'})
+        return res
     students = Students(admission_No, student_name)
     db.session.add(students)
     db.session.commit()
-    return student_schema.jsonify(students)
+    res = jsonify({'message' : 'Student Added Successfully' , 'added':'1'})
+    return res
+
 
 # ---Deleting Student Route---
 @app.route('/delete_student/<admission_No>/', methods=['DELETE'])
 def delete_student(admission_No):
     student = Students.query.filter_by(admission_No=admission_No).first()
+    # Deleting the same from static/ImgUploads folder
     filename = f'backend\static\ImgUploads\{admission_No}{student.uploaded_image_extension}'
     if os.path.exists(filename):
         os.remove(filename)
@@ -96,9 +92,7 @@ def delete_student(admission_No):
     return res
 
 
-# ---Adding Student Image while adding image to list Route---
-
-
+# ---Adding Student Image Route---
 @app.route('/add_student/image_upload/<admission_No>/', methods=['POST'])
 def add_student_image(admission_No):
     student = Students.query.filter_by(admission_No=admission_No).first()
@@ -127,13 +121,17 @@ def add_student_image(admission_No):
         res.status_code = 400
         return res
 
+
 # ---Marking Attendance Route---
-#  Corner Cases Handeling
+# ---Corner Cases Handeling---
 @app.route('/mark_attendance/<admission_No>/', methods=['POST'])
 def mark_attendance(admission_No):
     student = Students.query.filter_by(admission_No=admission_No).first()
     if student == None:
         res = jsonify({'message' : 'Admission no. not found.' , 'matched' : '0'})
+        return res
+    if student.present_status:
+        res = jsonify({'message' : 'This Admission no. has already been marked present' , 'matched' : '1'})
         return res
     base64_string = request.json['base64_string']
     def data_uri_to_cv2_img(uri):
@@ -166,7 +164,8 @@ def mark_attendance(admission_No):
                 dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
                 student.date = dt_string
                 db.session.commit()
-                res = jsonify({'message': 'Face Found' , 'matched' : '1'})
+                message = f'Attendance for {student.student_name} is marked successfully'
+                res = jsonify({'message': message , 'matched' : '1'})
                 return res
             else :
                 res = jsonify({'message': 'Face not matched' , 'matched' : '0'})

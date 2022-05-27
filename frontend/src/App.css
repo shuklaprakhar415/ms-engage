@@ -3,7 +3,6 @@ body {
   min-height: 100vh;
   height: 100vh;
   background-color: #3A506B;
-  /* background:linear-gradient(160deg, #4285f4, #4285f4 60%, white 60%, white); */
 }
 
 .bg-cover {
@@ -142,13 +141,10 @@ transform: translateY(5px);
 }
 
 .circular--portrait {
-  /* position: relative; */
   margin: auto;
   display: block;
   width: 400px;
   height: 400px;
-  /* overflow: hidden; */
-  /* border-radius: 50%; */
 }
 
 .circular--portrait video {
@@ -169,6 +165,7 @@ transform: translateY(5px);
 }
 
 .add-student-image{
+  filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
   width: 30%;
   margin-bottom: 35px;
   display: flex;

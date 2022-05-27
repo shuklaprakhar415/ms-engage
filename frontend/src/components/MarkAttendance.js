@@ -1,31 +1,45 @@
-import React, { useState, useCallback, useRef } from 'react'
-import Webcam from "react-webcam"
+import React, { useState, useCallback, useRef } from 'react';
+import Webcam from "react-webcam";
 import LoadingSpinner from './LoadingSpinner';
 
 
 const videoConstraints = {
-    width: 220,
-    height: 200,
+    width: 240,
+    height: 240,
     facingMode: "user"
 };
 
 
 function MarkAttendance() {
-    const [admission_No, setAdmissionNo] = useState('');
-    const[isLoading , setIsLoading] = useState(false);
-    const [image, setImage] = useState('');
-    const [message, setMessage] = useState([])
-    const [status, setStatus] = useState("")
-    const webcamRef = useRef(null);
+    const [admission_No, setAdmissionNo] = useState(''); //Students's Admission no. state
+    const[isLoading , setIsLoading] = useState(false); //Loading state , to check if response is recieved.
+    const [image, setImage] = useState(''); //base64 encoding of image to POST to backend
+    const [message, setMessage] = useState([]); //Response message state
+    const [status, setStatus] = useState(""); //Response status state
+    const webcamRef = useRef(null); 
 
 
     const capture = useCallback(
-        () => {
-            const imageSrc = webcamRef.current.getScreenshot();
-            setImage(imageSrc)
-        });
+    () => {
+        const imageSrc = webcamRef.current.getScreenshot();
+        setImage(imageSrc)
+    });
 
+    // Handeling Submit Form 
     const submitForm = () => {
+
+        if(admission_No === "")
+        {
+            setMessage("Please Fill Admission no.");
+            setStatus("danger");
+            return;
+        }
+        if(image === "")
+        {
+            setMessage("Please capture image.");
+            setStatus("danger");
+            return;
+        }
         try {
             setIsLoading(true);
             fetch(`http://127.0.0.1:5000/mark_attendance/${admission_No}/`, {
@@ -40,27 +54,29 @@ function MarkAttendance() {
             })
 
                 .then(res => res.json())
-
+                // Handeling Responses
+                // res.matched store '1' if face is matched or '0' if not matched.
                 .then(res => {
-                    
                     if (parseInt(res.matched)) {
                         setImage("");
                         setMessage(res.message);
-                        setStatus("success")
-                        console.log(status);
-                    } else {
+                        setStatus("success");
+                    } 
+                    else {
                         
-                        console.log("Danger")
+                        console.log("Danger");
                         setMessage(res.message);
-                        setStatus("danger")
-                        console.log(status);
+                        setStatus("danger");
                     }
                     setIsLoading(false);
                 })
-                 .catch(err => {
-                     console.log(err);
-                     setIsLoading(false);
-                 })
+                // Handeling Errors
+                .catch(err => {
+                    console.log(err);
+                    setMessage("Unfortunately some error occured");
+                    setStatus("danger")
+                    setIsLoading(false);
+                })
 
         }
         catch (err) {
@@ -88,11 +104,12 @@ function MarkAttendance() {
                                     <div id="nav-tab-card" className="tab-pane fade show active">
                                         <div>
                                             {message ?
-                                                <p className={`alert alert-${status}`}>{message}</p>
+                                                <p className={`alert alert-${status}`}>{message}</p> //Message Popup to check status
                                                 : null
                                             }
                                         </div>
                                         <form>
+                                            {/* Admission no. */}
                                             <div className="form-group">
                                                 <label htmlFor="admission_no" className='mb-2'>Admission Number</label>
                                                 <input
@@ -104,7 +121,7 @@ function MarkAttendance() {
                                                     className="form-control"
                                                 />
                                             </div>
-
+                                            {/* Field to display webcam catured and streaming image */}
                                             <h3 className="mb-1 my-2 text-center" style={{color : '#0B132B' , fontWeight : 'bold'}}>Your Video</h3>
                                             <div className="container member-name mb-0 text-center">
                                                 <div className="container">
@@ -115,24 +132,29 @@ function MarkAttendance() {
                                                         screenshotFormat="image/jpeg"
                                                         width={220}
                                                         videoConstraints={videoConstraints} /> :
-                                                        <img className='webcam-img' src={image} />
+                                                        <img className='webcam-img' alt="capture" src={image} />
                                                     }
                                                 </div>
                                                 <div className='container'>
                                                     {image !== '' ?
+                                                        // Retake image  
                                                         <button className="btn btn-warning rounded my-3" onClick={(e) => {
                                                             e.preventDefault();
                                                             setImage('')
                                                         }}>
-                                                            Retake Image</button> :
+                                                            Retake Image
+                                                        </button> :
+                                                        // Capture Image
                                                         <button className="btn btn-warning rounded my-3" onClick={(e) => {
                                                             e.preventDefault();
                                                             capture();
                                                         }}>
-                                                            Capture</button>
+                                                            Capture
+                                                        </button>
                                                     }
                                                 </div>
-                                                {isLoading ? <LoadingSpinner/> : null}
+                                                {/* Loader to Load while the response is not recieved */}
+                                                {isLoading ? <LoadingSpinner/> : null} 
                                             </div>
 
                                             <button 

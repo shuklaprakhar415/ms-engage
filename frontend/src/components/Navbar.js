@@ -1,5 +1,5 @@
-import React from 'react'
-import icons8 from "../images/icons8.png"
+import React from 'react';
+import icons8 from "../images/icons8.png";
 
 function Navbar() {
   return (

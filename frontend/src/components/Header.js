@@ -11,9 +11,7 @@ function Header() {
                     <br></br>
                     <br></br>
                 </div>
-            </div>
-
-            
+            </div>   
         </div>
     )
 }
