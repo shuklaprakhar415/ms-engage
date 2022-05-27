@@ -14,7 +14,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 app.secret_key = "prakharshukla"
-UPLOAD_FOLDER = 'backend\static\ImgUploads'
+UPLOAD_FOLDER = 'static\ImgUploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///attendanceflask.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -83,7 +83,7 @@ def add_student():
 def delete_student(admission_No):
     student = Students.query.filter_by(admission_No=admission_No).first()
     # Deleting the same from static/ImgUploads folder
-    filename = f'backend\static\ImgUploads\{admission_No}{student.uploaded_image_extension}'
+    filename = f'static\ImgUploads\{admission_No}{student.uploaded_image_extension}'
     if os.path.exists(filename):
         os.remove(filename)
     db.session.delete(student)
@@ -149,7 +149,7 @@ def mark_attendance(admission_No):
     if len(img_encoding_test) == 0 :
         res = jsonify({'message' : 'Face not detected , try again.' , 'matched' : '0'})
         return res
-    path = 'backend\static\ImgUploads'
+    path = 'static\ImgUploads'
     myList = os.listdir(path)
     for cl in myList:
         img_found = cv2.imread(f'{path}/{cl}')
