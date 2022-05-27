@@ -66,6 +66,7 @@ from app import db
 db.create_all()
 ```
 After doing this you must be seeing a new .db file created in the backend directory.
+
 6. Now open new terminal and confirm if virtual environment is activated or not , then run the development server for our API by :
 ```
 python app.py
