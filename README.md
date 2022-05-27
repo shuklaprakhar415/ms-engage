@@ -39,7 +39,7 @@ npm start
 ```
 **Since API is not hosted , we have to serve this as well as locally.**
 **Our backend is made on flask ,so ensure that [python](https://www.python.org/downloads/) is installed in your PC**
-1. Open new terminal and go to the **backend** directorey by:
+1. Open new terminal and go to the **backend** directory by:
 ```
 cd backend
 ```
@@ -51,10 +51,17 @@ virtualenv env
 ```
 .\env\Scripts\activate
 ```
+By default in windows the execution property is set Restricted. This will restrict the activation of virtual environment. To change the execution policy use following commands on  Windows PowerShell as Administrator :
+```
+Set-ExecutionPolicy Unrestricted -Force
+```
 4. Now install the packages in requirements.txt file by :
 ```
 pip install requirements.txt
 ```
+It is to be noted that **face_recognition** requires **dlib library** , and dlib requires C program to use.
+Thus, install **VS Code community version** and install **Desktop development with C++** to install dlib. Detail of this is given [here](https://medium.com/analytics-vidhya/how-to-install-dlib-library-for-python-in-windows-10-57348ba1117f#:~:text=Now%20we%20can%20install%20dlib,need%20to%20install%20CMake%20library.&text=Then%2C%20you%20can%20install%20dlib%20library%20using%20pip%20install%20.&text=After%20passing%20enter%2C%20you%20laptop,run%20the%20C%2C%20C%2B%2B%20Compiler.).
+
 5. Now create a new database file by opening new terminal and running following commands :
 ```
 python
