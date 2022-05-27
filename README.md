@@ -74,3 +74,12 @@ python app.py
 Now your API will be hosted on http://127.0.0.1:5000 .
 
 **After following all the above instruction you can explore the Attendance Portal application in your local server**
+<p float="left">
+<img src="https://user-images.githubusercontent.com/78557330/170707726-c2dc9b04-df31-412a-994b-794bd54c8be5.png" width="300">
+<img src="https://user-images.githubusercontent.com/78557330/170708517-c76e221b-18bb-4500-a148-3b75f00683a0.png" width="300">
+<img src="https://user-images.githubusercontent.com/78557330/170708902-76c9f629-e612-4de1-8981-1c690ecb28b8.png" width="300">
+<img src="https://user-images.githubusercontent.com/78557330/170708900-430e4cf8-d47a-4c7b-a827-28a8a8cf506e.png" width="300">
+<img src="https://user-images.githubusercontent.com/78557330/170708897-7ffed155-0520-4c45-b58b-d3ea4630ffcc.png" width="300">
+<img src="https://user-images.githubusercontent.com/78557330/170708890-83669a07-b0f0-455a-a588-4956f80ea44e.png" width="300">
+</p>
+
