@@ -2,13 +2,15 @@
 This a an attendance tracker system which uses facial recognition technology for the same purpose.
 
 ## Tech Stack:
-- **flask-** A python framework 
+- **Flask-** A python framework for web development.
 - **face_recognition** library by Adam Geitgey
-- **react-** JavaScript Library for building user interfaces
+- **React-** JavaScript Library for building user interfaces
+- **Firebase** For teachers authentication.
 
 ## Features:
 
 - ### Teacher
+Teacher need to signup/signin to acces these features.
     - Can add new student using student name and admission no.
     - Can add test image (without it student will not be able to mark attendance)
     - Remove student from list.
@@ -16,6 +18,7 @@ This a an attendance tracker system which uses facial recognition technology for
 - ### Student
     - Can mark attendance by capturing his image from webcam and filling admission no. in form.
     - Along with all this, required response will be give if the face is **not detected** , **not matched** , or **already have been marked attended.**
+
 ## Local Setup
 1. Clone the github repository.
 ```
