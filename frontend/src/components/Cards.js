@@ -2,6 +2,7 @@ import React from 'react'
 import teacher from "../images/teacher.png"
 import student from "../images/student.png"
 import Header from './Header'
+import {Link} from "react-router-dom"
 
 function Cards() {
     
@@ -25,7 +26,7 @@ function Cards() {
                                     </div>
                                 </div>
                                 
-                                <a className="button-to-link" href="/student">Click here</a>
+                                <Link className="button-to-link" to="/student">Click here</Link>
 
                             </div>
                         </div>
@@ -41,8 +42,7 @@ function Cards() {
                                         <div className="mb-3 text-center mt-4" style={{color : '#0B132B' , fontWeight : 'bold'}}>Click here if you are a teacher and see attendance details.</div>
                                     </div>
                                 </div>
-                                
-                                <a className="button-to-link" href="/teacher">Click here</a>
+                                <Link className="button-to-link" to="/signin">Click here</Link>
                                 
                             </div>
                         </div>
