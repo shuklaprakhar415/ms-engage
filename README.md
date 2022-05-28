@@ -2,13 +2,15 @@
 This a an attendance tracker system which uses facial recognition technology for the same purpose.
 
 ## Tech Stack:
-- **flask-** A python framework 
+- **Flask-** A python framework for web development.
 - **face_recognition** library by Adam Geitgey
-- **react-** JavaScript Library for building user interfaces
+- **React-** JavaScript Library for building user interfaces
+- **Firebase** For teachers authentication.
 
 ## Features:
 
 - ### Teacher
+    - Teacher need to signup/signin to acces these features.
     - Can add new student using student name and admission no.
     - Can add test image (without it student will not be able to mark attendance)
     - Remove student from list.
@@ -16,6 +18,7 @@ This a an attendance tracker system which uses facial recognition technology for
 - ### Student
     - Can mark attendance by capturing his image from webcam and filling admission no. in form.
     - Along with all this, required response will be give if the face is **not detected** , **not matched** , or **already have been marked attended.**
+
 ## Local Setup
 1. Clone the github repository.
 ```
@@ -83,6 +86,7 @@ Now your API will be hosted on http://127.0.0.1:5000 .
 **After following all the above instruction you can explore the Attendance Portal application in your local server**
 <p float="left">
 <img src="https://user-images.githubusercontent.com/78557330/170707726-c2dc9b04-df31-412a-994b-794bd54c8be5.png" width="300">
+<img src="https://user-images.githubusercontent.com/78557330/170821121-e435805a-a2c3-4da4-820a-40be5cc164a8.png" width="300">
 <img src="https://user-images.githubusercontent.com/78557330/170708517-c76e221b-18bb-4500-a148-3b75f00683a0.png" width="300">
 <img src="https://user-images.githubusercontent.com/78557330/170708902-76c9f629-e612-4de1-8981-1c690ecb28b8.png" width="300">
 <img src="https://user-images.githubusercontent.com/78557330/170708900-430e4cf8-d47a-4c7b-a827-28a8a8cf506e.png" width="300">
