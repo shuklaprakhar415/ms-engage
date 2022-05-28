@@ -10,8 +10,7 @@ This a an attendance tracker system which uses facial recognition technology for
 ## Features:
 
 - ### Teacher
-Teacher need to signup/signin to acces these features.
-
+    - Teacher need to signup/signin to acces these features.
     - Can add new student using student name and admission no.
     - Can add test image (without it student will not be able to mark attendance)
     - Remove student from list.
