@@ -67,6 +67,10 @@ Set-ExecutionPolicy Unrestricted -Force
 ```
 pip install requirements.txt
 ```
+OR
+```
+pip install -r requirements.txt
+```
 It is to be noted that **face_recognition** requires **dlib library** , and dlib requires C program to use.
 Thus, install **VS Code community version** and install **Desktop development with C++** to install dlib. Detail of this is given [here](https://medium.com/analytics-vidhya/how-to-install-dlib-library-for-python-in-windows-10-57348ba1117f#:~:text=Now%20we%20can%20install%20dlib,need%20to%20install%20CMake%20library.&text=Then%2C%20you%20can%20install%20dlib%20library%20using%20pip%20install%20.&text=After%20passing%20enter%2C%20you%20laptop,run%20the%20C%2C%20C%2B%2B%20Compiler.).
 
