@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/78557330/170851152-889ca00f-6131-4a82-88a5-75707329e468.png">
+<img src="https://user-images.githubusercontent.com/78557330/170858525-6e89b393-7e02-4615-9a88-7d9b2c0fa94e.png">
 
 # Attendance Portal
 This a an attendance tracker system which uses facial recognition technology for the same purpose.
