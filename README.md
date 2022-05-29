@@ -1,11 +1,14 @@
+<img src="https://user-images.githubusercontent.com/78557330/170858525-6e89b393-7e02-4615-9a88-7d9b2c0fa94e.png">
+
 # Attendance Portal
 This a an attendance tracker system which uses facial recognition technology for the same purpose.
 
 ## Tech Stack:
-- **Flask-** A python framework for web development.
-- **face_recognition** library by Adam Geitgey
-- **React-** JavaScript Library for building user interfaces
-- **Firebase** For teachers authentication.
+- **Flask** - A python framework for web development.
+- **face_recognition** - library by Adam Geitgey
+- **React** JavaScript Library for building user interfaces
+- **Firebase** - For teachers authentication.
+- **Bootstrap** - Building responsive designs.
 
 ## Features:
 
