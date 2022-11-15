@@ -22,6 +22,23 @@ This a an attendance tracker system which uses facial recognition technology for
     - Can mark attendance by capturing his image from webcam and filling admission no. in form.
     - Along with all this, required response will be give if the face is **not detected** , **not matched** , or **already have been marked attended.**
 
+## Folder Structure
+    .
+    ├── frontend                 # Frontend files (react)
+    │  ├── public          
+    │  ├── src         
+    │  ├── package-lock.json         
+    │  └── package.json              
+    ├── backend                  # Backend files (flask)
+    │  ├── __pycache__          
+    │  ├── env         
+    │  ├── static         
+    │  ├── app.py              
+    │  ├── attendanceflask.db         
+    │  └── requirements.txt
+    ├── .gitignore
+    └── README.md
+
 ### A small demonstration of workflow can be found [here](https://drive.google.com/file/d/1fsXdZYSGHJQ6LW9qy9NQp4rX6ECtHKva/view?usp=sharing)
 
 ## Local Setup
